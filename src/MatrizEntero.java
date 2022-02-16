@@ -2,9 +2,9 @@
  Diseña un TDA que permita construir objetos que almacenen una matriz CUADRADA de enteros. 
 L- El constructor de la clase recibirá un ENTERO indicando el tamaño de RENGLONES Y COLUMNAS que se deberá construir. 
 Las operaciones y comportamiento es el siguiente:
-- sumarValores: éste método no tiene parámetro, y obtiene la suma de TODOS LOS VALORES capturados de la matriz, retornando la suma de los mismos.
-- sumarValoresRenglon(int numRenglon): éste método regresa la suma de valores del renglón indicado por la variable 
-- sumarValoresColumna(int numColumna): igual que el anterior pero para columnas, indicando por la variable numColumna el índice de columa que se desea sumar.
+L- sumarValores: éste método no tiene parámetro, y obtiene la suma de TODOS LOS VALORES capturados de la matriz, retornando la suma de los mismos.
+L- sumarValoresRenglon(int numRenglon): éste método regresa la suma de valores del renglón indicado por la variable 
+L- sumarValoresColumna(int numColumna): igual que el anterior pero para columnas, indicando por la variable numColumna el índice de columa que se desea sumar.
 - intercambioRenglones(int reng1, int ren2): Realiza un intercambio de datos entre el renglon 1 y renglon 2.
 - intercambioColumnas(int col1, int col2): Realiza un intercambio de valores entre las columnas 1 y 2.
 - copiarRenglon(int origen, int destino): Realiza un copiado de valores desde renglon origen hacia renglón destino.
@@ -54,11 +54,21 @@ public class MatrizEntero {
         }
         return sumaDMatriz;
     }
+    // éste método no tiene parámetro, y obtiene la suma de TODOS LOS VALORES capturados de la matriz, retornando la suma de los mismos.
     public int sumarValoresRenglon(int numRen){
-        return 7;
+        int sumaRen=0;
+            for (int j = 0; j < Tam; j++) {
+                sumaRen+=Matriz[numRen][j];
+            }
+        return sumaRen;
     }
-    public int sumarValoresColumna(int numColumna){
-        return 7;
+    // éste método regresa la suma de valores del renglón indicado por la variable 
+    public int sumarValoresColumna(int numCol){
+        int sumaCol=0;
+            for (int j = 0; j < Tam; j++) {
+                sumaCol+=Matriz[j][numCol];
+            }
+        return sumaCol;
     }
 //: igual que el anterior pero para columnas, indicando por la variable numColumna el índice de columa que se desea sumar.
  public int[][] intercambioRenglones(int reng1, int ren2){
