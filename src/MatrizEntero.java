@@ -20,7 +20,7 @@ public class MatrizEntero {
     private int Tam;
     //constructor, crea una matriz de tamaño N, y la inicializa con valores random
     public MatrizEntero(int tam){
-        Tam=tam;
+       Tam=tam;
        Matriz=new int[Tam][Tam];
         for (int i = 0; i < Tam; i++) {
             for (int j = 0; j < Tam; j++) {
@@ -81,20 +81,4 @@ public class MatrizEntero {
     return Matriz;
 }
  //: no lleva parámetro, retorna la matriz inversa, es decirlo los renglones los vuelve columnas y viceversa.
- 
-     public void MostarMatriz(){
-        for(int i = 0; i< Tam; i++){
-            for(int j =0; j<Tam; j++){
-                System.out.print("");
-                System.out.print("["+Matriz[i][j]+"] ");
-            }//For interno
-            System.out.println("");
-        }//For externo
-    }//Mostrar matriz
-    public static void main(String[] args) {
-        MatrizEntero ma = new MatrizEntero(7);
-        ma.MostarMatriz();
-        System.out.println("Suma de valores: "+ma.sumarValores());
-        
-    }
 }
