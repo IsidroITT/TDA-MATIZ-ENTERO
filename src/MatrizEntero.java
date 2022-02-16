@@ -1,5 +1,5 @@
 /*
- Diseña un TDA que permita construir objetos que almacenen una matriz CUADRADA de enteros. 
+Diseña un TDA que permita construir objetos que almacenen una matriz CUADRADA de enteros. 
 L- El constructor de la clase recibirá un ENTERO indicando el tamaño de RENGLONES Y COLUMNAS que se deberá construir. 
 Las operaciones y comportamiento es el siguiente:
 L- sumarValores: éste método no tiene parámetro, y obtiene la suma de TODOS LOS VALORES capturados de la matriz, retornando la suma de los mismos.
@@ -54,7 +54,7 @@ public class MatrizEntero {
         }
         return sumaDMatriz;
     }
-    // éste método no tiene parámetro, y obtiene la suma de TODOS LOS VALORES capturados de la matriz, retornando la suma de los mismos.
+    
     public int sumarValoresRenglon(int numRen){
         int sumaRen=0;
             for (int j = 0; j < Tam; j++) {
@@ -62,7 +62,7 @@ public class MatrizEntero {
             }
         return sumaRen;
     }
-    // éste método regresa la suma de valores del renglón indicado por la variable 
+   
     public int sumarValoresColumna(int numCol){
         int sumaCol=0;
             for (int j = 0; j < Tam; j++) {
@@ -70,12 +70,22 @@ public class MatrizEntero {
             }
         return sumaCol;
     }
-//: igual que el anterior pero para columnas, indicando por la variable numColumna el índice de columa que se desea sumar.
- public int[][] intercambioRenglones(int reng1, int ren2){
+
+ public  int[][] intercambioRenglones(int ren1, int ren2){
+     for (int i = 0; i < Tam; i++) {
+        int aux = Matriz[ren1][i];
+        Matriz[ren1][i] = Matriz[ren2][i];
+        Matriz[ren2][i] = aux;
+    } 
      return Matriz;
  }
 //: Realiza un intercambio de datos entre el renglon 1 y renglon 2.
  public int[][] intercambioColumnas(int col1, int col2){
+     for (int i = 0; i < Tam; i++) {
+        int aux = Matriz[i][col1];
+        Matriz[i][col1] = Matriz[i][col2];
+        Matriz[i][col2] = aux;
+    } 
      return Matriz;
  }
  //: Realiza un intercambio de valores entre las columnas 1 y 2.
