@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaMatriz extends javax.swing.JFrame {
 public DefaultTableModel Matriz;
 public MatrizEntero MatrizCua;
+public boolean realizarOperaciones;
     /**
      * Creates new form VentanaMatriz
      */
@@ -34,9 +35,15 @@ public MatrizEntero MatrizCua;
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMatriz = new javax.swing.JTable();
         txtTam = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtRen = new javax.swing.JTextField();
         btnMostrarTerminal = new javax.swing.JButton();
         btnInicializar = new javax.swing.JButton();
+        txtCol = new javax.swing.JTextField();
+        lblRen = new javax.swing.JLabel();
+        lblTam = new javax.swing.JLabel();
+        lblCol = new javax.swing.JLabel();
+        btnSumaRen = new javax.swing.JButton();
+        btnSumaCol = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,8 +56,6 @@ public MatrizEntero MatrizCua;
             }
         ));
         jScrollPane1.setViewportView(tblMatriz);
-
-        jTextField2.setText("jTextField2");
 
         btnMostrarTerminal.setText("Mostrar");
         btnMostrarTerminal.addActionListener(new java.awt.event.ActionListener() {
@@ -66,6 +71,26 @@ public MatrizEntero MatrizCua;
             }
         });
 
+        lblRen.setText("Renglones");
+
+        lblTam.setText("Tamaño Matriz");
+
+        lblCol.setText("Columnas");
+
+        btnSumaRen.setText("Suma renglones");
+        btnSumaRen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSumaRenActionPerformed(evt);
+            }
+        });
+
+        btnSumaCol.setText("Suma columnas");
+        btnSumaCol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSumaColActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,11 +99,19 @@ public MatrizEntero MatrizCua;
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtTam, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnInicializar))
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTam, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                            .addComponent(txtRen)
+                            .addComponent(txtCol))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnSumaRen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnInicializar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSumaCol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lblRen)
+                    .addComponent(lblTam)
+                    .addComponent(lblCol))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -94,12 +127,24 @@ public MatrizEntero MatrizCua;
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addGap(23, 23, 23)
+                        .addComponent(lblTam)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtTam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnInicializar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblRen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtRen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSumaRen))
+                        .addGap(20, 20, 20)
+                        .addComponent(lblCol)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSumaCol))))
                 .addGap(29, 29, 29)
                 .addComponent(btnMostrarTerminal)
                 .addContainerGap(51, Short.MAX_VALUE))
@@ -124,10 +169,42 @@ public MatrizEntero MatrizCua;
 
         Matriz.setColumnCount(MatrizCua.getTam());
         Matriz.setRowCount(MatrizCua.getTam());
-
+        realizarOperaciones=true;
         MostrarMatriz();
         
     }//GEN-LAST:event_btnInicializarActionPerformed
+
+    private void btnSumaRenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumaRenActionPerformed
+     if(realizarOperaciones){
+         int ren=0;
+         try {
+              ren=Integer.parseInt(txtRen.getText());
+              int resSumaRen=MatrizCua.sumarValoresRenglon(ren-1);
+              showMessageDialog(this,"La suma de los valores del renglon "+ren+" es : "+resSumaRen);
+          }catch (NumberFormatException e){
+              showMessageDialog(this, "Ingresa el numero del renglon que deseas sumar");
+               return;
+          }
+     }else{
+         showMessageDialog(this,"No es posible realizar la operacion, primero genera una matriz");
+     }
+    }//GEN-LAST:event_btnSumaRenActionPerformed
+
+    private void btnSumaColActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumaColActionPerformed
+       if(realizarOperaciones){
+         int col=0;
+         try {
+             col=Integer.parseInt(txtCol.getText());
+              int resSumaCol=MatrizCua.sumarValoresColumna(col-1);
+              showMessageDialog(this,"La suma de los valores de la columna "+col+" es : "+resSumaCol);
+          }catch (NumberFormatException e){
+              showMessageDialog(this, "Ingresa el numero de la columna que deseas sumar");
+               return;
+          }
+     }else{
+         showMessageDialog(this,"No es posible realizar la operacion, primero genera una matriz");
+     }
+    }//GEN-LAST:event_btnSumaColActionPerformed
 
     public void  MostrarMatrizTerminal() {
         for (int i = 0; i < MatrizCua.getTam(); i++) {
@@ -184,9 +261,15 @@ public MatrizEntero MatrizCua;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInicializar;
     private javax.swing.JButton btnMostrarTerminal;
+    private javax.swing.JButton btnSumaCol;
+    private javax.swing.JButton btnSumaRen;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblCol;
+    private javax.swing.JLabel lblRen;
+    private javax.swing.JLabel lblTam;
     private javax.swing.JTable tblMatriz;
+    private javax.swing.JTextField txtCol;
+    private javax.swing.JTextField txtRen;
     private javax.swing.JTextField txtTam;
     // End of variables declaration//GEN-END:variables
 }
