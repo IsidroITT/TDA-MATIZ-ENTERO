@@ -54,6 +54,8 @@ public boolean realizarOperaciones;
         txtRen2 = new javax.swing.JTextField();
         btnInterRen = new javax.swing.JButton();
         btnInterCol = new javax.swing.JButton();
+        btnDupRen = new javax.swing.JButton();
+        btnDupCol = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,6 +131,20 @@ public boolean realizarOperaciones;
             }
         });
 
+        btnDupRen.setText("Duplicar Renglon");
+        btnDupRen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDupRenActionPerformed(evt);
+            }
+        });
+
+        btnDupCol.setText("Duplicar Columna");
+        btnDupCol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDupColActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -158,16 +174,22 @@ public boolean realizarOperaciones;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtCol2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSumaCol)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnInterCol, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSumaRen)
-                            .addComponent(lblCol))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnSumaRen)
+                                    .addComponent(lblCol))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnInterRen, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSumaCol)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnInterCol, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(btnInterRen, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnDupCol)
+                            .addComponent(btnDupRen))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -207,7 +229,8 @@ public boolean realizarOperaciones;
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSumaRen)
-                            .addComponent(btnInterRen))
+                            .addComponent(btnInterRen)
+                            .addComponent(btnDupRen))
                         .addGap(29, 29, 29)
                         .addComponent(lblCol)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -217,7 +240,8 @@ public boolean realizarOperaciones;
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSumaCol)
-                            .addComponent(btnInterCol))))
+                            .addComponent(btnInterCol)
+                            .addComponent(btnDupCol))))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
@@ -330,6 +354,58 @@ public boolean realizarOperaciones;
             showMessageDialog(this,"No es posible intercambiar columnas\n de una matriz inexistente");
         }
     }//GEN-LAST:event_btnInterColActionPerformed
+
+    private void btnDupRenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDupRenActionPerformed
+         if(realizarOperaciones){
+           int[][] dupRen;
+           int dren1;
+           int dren2;
+           try {
+              dren1=Integer.parseInt(txtRen.getText())-1;
+              dren2=Integer.parseInt(txtRen2.getText())-1;
+              dupRen=MatrizCua.copiarRenglon(dren1,dren2);
+          }catch (NumberFormatException e){
+              showMessageDialog(this, "Ingresa el numero del renglon que deseas sumar");
+               return;
+          }
+            NuevaM.setColumnCount(dupRen.length);
+            NuevaM.setRowCount(dupRen.length);
+            
+            for (int i = 0; i < dupRen.length; i++) {
+                for (int j = 0; j < dupRen.length; j++) {
+                    NuevaM.setValueAt(dupRen[i][j], i, j);
+                }
+             }
+        }else{
+            showMessageDialog(this,"No es posible copiar renglones\n de una matriz inexistente");
+        }
+    }//GEN-LAST:event_btnDupRenActionPerformed
+
+    private void btnDupColActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDupColActionPerformed
+        if(realizarOperaciones){
+           int[][] dupCol;
+           int dcol1;
+           int dcol2;
+           try {
+              dcol1=Integer.parseInt(txtCol.getText())-1;
+              dcol2=Integer.parseInt(txtCol2.getText())-1;
+              dupCol=MatrizCua.copiarColumna(dcol1,dcol2);
+          }catch (NumberFormatException e){
+              showMessageDialog(this, "Ingresa el numero del renglon que deseas sumar");
+               return;
+          }
+            NuevaM.setColumnCount(dupCol.length);
+            NuevaM.setRowCount(dupCol.length);
+            
+            for (int i = 0; i < dupCol.length; i++) {
+                for (int j = 0; j < dupCol.length; j++) {
+                    NuevaM.setValueAt(dupCol[i][j], i, j);
+                }
+             }
+        }else{
+            showMessageDialog(this,"No es posible copiar una columna\n de una matriz inexistente");
+        }
+    }//GEN-LAST:event_btnDupColActionPerformed
     public void MostrarMatriz(DefaultTableModel tabla){
         for (int i = 0; i < MatrizCua.getTam(); i++) {
             for (int j = 0; j < MatrizCua.getTam(); j++) {
@@ -373,6 +449,8 @@ public boolean realizarOperaciones;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDupCol;
+    private javax.swing.JButton btnDupRen;
     private javax.swing.JButton btnInicializar;
     private javax.swing.JButton btnInterCol;
     private javax.swing.JButton btnInterRen;

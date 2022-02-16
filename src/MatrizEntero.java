@@ -5,8 +5,8 @@ Las operaciones y comportamiento es el siguiente:
 L- sumarValores: éste método no tiene parámetro, y obtiene la suma de TODOS LOS VALORES capturados de la matriz, retornando la suma de los mismos.
 L- sumarValoresRenglon(int numRenglon): éste método regresa la suma de valores del renglón indicado por la variable 
 L- sumarValoresColumna(int numColumna): igual que el anterior pero para columnas, indicando por la variable numColumna el índice de columa que se desea sumar.
-- intercambioRenglones(int reng1, int ren2): Realiza un intercambio de datos entre el renglon 1 y renglon 2.
-- intercambioColumnas(int col1, int col2): Realiza un intercambio de valores entre las columnas 1 y 2.
+L- intercambioRenglones(int reng1, int ren2): Realiza un intercambio de datos entre el renglon 1 y renglon 2.
+L- intercambioColumnas(int col1, int col2): Realiza un intercambio de valores entre las columnas 1 y 2.
 - copiarRenglon(int origen, int destino): Realiza un copiado de valores desde renglon origen hacia renglón destino.
 - copiarColumna(int colOrigen, int ColDestino): Copia los datos de la columna origen sobre la destino.
 - inversa: no lleva parámetro, retorna la matriz inversa, es decirlo los renglones los vuelve columnas y viceversa.
@@ -79,7 +79,7 @@ public class MatrizEntero {
     } 
      return Matriz;
  }
-//: Realiza un intercambio de datos entre el renglon 1 y renglon 2.
+ 
  public int[][] intercambioColumnas(int col1, int col2){
      for (int i = 0; i < Tam; i++) {
         int aux = Matriz[i][col1];
@@ -88,13 +88,19 @@ public class MatrizEntero {
     } 
      return Matriz;
  }
- //: Realiza un intercambio de valores entre las columnas 1 y 2.
- public int[][] copiarRenglon(int origen, int destino){
+ 
+ public int[][] copiarRenglon(int renOrigen, int renDestino){
+     for (int i = 0; i < Tam; i++) {
+        Matriz[renDestino][i]=Matriz[renOrigen][i];
+    } 
      return Matriz;
  }
 //: Realiza un copiado de valores desde renglon origen hacia renglón destino.
- public int[][] copiarColumna(int colOrigen, int ColDestino){
- return Matriz;
+ public int[][] copiarColumna(int colOrigen, int colDestino){
+     for (int i = 0; i < Tam; i++) {
+        Matriz[i][colOrigen] = Matriz[i][colDestino];
+    } 
+     return Matriz;
  }
 //: Copia los datos de la columna origen sobre la destino.
  public int[][] inversa(){
