@@ -21,6 +21,8 @@ public boolean realizarOperaciones;
      */
     public VentanaMatriz() {
         initComponents();
+        setLocationRelativeTo(this);
+        this.setTitle("Matriz Cuadrada");
         Matriz=(DefaultTableModel)tblMatriz.getModel();
         NuevaM=(DefaultTableModel)tblNuevaM.getModel();
     }
@@ -56,6 +58,7 @@ public boolean realizarOperaciones;
         btnInterCol = new javax.swing.JButton();
         btnDupRen = new javax.swing.JButton();
         btnDupCol = new javax.swing.JButton();
+        btnSumarMatriz = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,10 +72,24 @@ public boolean realizarOperaciones;
         ));
         jScrollPane1.setViewportView(tblMatriz);
 
+        txtRen.setText("Renglon 1");
+        txtRen.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtRenFocusGained(evt);
+            }
+        });
+
         btnInicializar.setText("Inicializar");
         btnInicializar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInicializarActionPerformed(evt);
+            }
+        });
+
+        txtCol.setText("Columna 1");
+        txtCol.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtColFocusGained(evt);
             }
         });
 
@@ -82,7 +99,7 @@ public boolean realizarOperaciones;
 
         lblCol.setText("Columnas");
 
-        btnSumaRen.setText("Suma renglones");
+        btnSumaRen.setText("Suma renglon");
         btnSumaRen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSumaRenActionPerformed(evt);
@@ -117,6 +134,20 @@ public boolean realizarOperaciones;
             }
         });
 
+        txtCol2.setText("Columna 2");
+        txtCol2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCol2FocusGained(evt);
+            }
+        });
+
+        txtRen2.setText("Renglon 2");
+        txtRen2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtRen2FocusGained(evt);
+            }
+        });
+
         btnInterRen.setText("Intercambio Ren");
         btnInterRen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,104 +176,115 @@ public boolean realizarOperaciones;
             }
         });
 
+        btnSumarMatriz.setText("Sumar Matriz");
+        btnSumarMatriz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSumarMatrizActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(255, 255, 255))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTam, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                            .addComponent(txtRen))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnInicializar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnInvertir, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtRen2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(lblRen)
-                    .addComponent(lblTam)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtCol, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCol2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtTam, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                                    .addComponent(txtRen))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnInicializar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnInvertir, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnSumarMatriz))
+                                    .addComponent(txtRen2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblRen)
+                            .addComponent(lblTam)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtCol, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCol2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnSumaRen)
-                                    .addComponent(lblCol))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnSumaRen)
+                                            .addComponent(lblCol))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnInterRen, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnSumaCol)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnInterCol, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
-                                .addComponent(btnInterRen, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSumaCol)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnInterCol, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnDupCol)
+                                    .addComponent(btnDupRen))))
+                        .addGap(255, 386, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnDupCol)
-                            .addComponent(btnDupRen))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(98, 98, 98))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblMatrizOriginal)
-                        .addGap(267, 267, 267))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblMatrizOriginal)
+                                .addGap(169, 169, 169)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(47, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(226, 226, 226))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
+                .addComponent(lblTam)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTam)
-                    .addComponent(lblMatrizOriginal))
+                    .addComponent(txtTam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInicializar)
+                    .addComponent(btnInvertir)
+                    .addComponent(btnSumarMatriz))
+                .addGap(18, 18, 18)
+                .addComponent(lblRen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnInicializar)
-                            .addComponent(btnInvertir))
-                        .addGap(18, 18, 18)
-                        .addComponent(lblRen)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtRen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRen2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSumaRen)
-                            .addComponent(btnInterRen)
-                            .addComponent(btnDupRen))
-                        .addGap(29, 29, 29)
-                        .addComponent(lblCol)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCol2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSumaCol)
-                            .addComponent(btnInterCol)
-                            .addComponent(btnDupCol))))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtRen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRen2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSumaRen)
+                    .addComponent(btnInterRen)
+                    .addComponent(btnDupRen))
+                .addGap(29, 29, 29)
+                .addComponent(lblCol)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCol2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSumaCol)
+                    .addComponent(btnInterCol)
+                    .addComponent(btnDupCol))
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMatrizOriginal)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -257,11 +299,8 @@ public boolean realizarOperaciones;
             showMessageDialog(this, "Ingresa un numero");
             return;
         }
-
-        Matriz.setColumnCount(MatrizCua.getTam());
-        Matriz.setRowCount(MatrizCua.getTam());
         realizarOperaciones=true;
-        MostrarMatriz(Matriz);
+        MostrarMatriz(Matriz,MatrizCua.getMatriz());
         
     }//GEN-LAST:event_btnInicializarActionPerformed
 
@@ -269,45 +308,33 @@ public boolean realizarOperaciones;
      if(realizarOperaciones){
          int ren;
          try {
-              ren=Integer.parseInt(txtRen.getText());
-              int resSumaRen=MatrizCua.sumarValoresRenglon(ren-1);
-              showMessageDialog(this,"La suma de los valores del renglon "+ren+" es : "+resSumaRen);
+                ren=Integer.parseInt(txtRen.getText());
+                int resSumaRen=MatrizCua.sumarValoresRenglon(ren-1);
+                showMessageDialog(this,"La suma de los valores del renglon "+ren+" es : "+resSumaRen);
           }catch (NumberFormatException e){
               showMessageDialog(this, "Ingresa el numero del renglon que deseas sumar");
           }
-     }else{
-         showMessageDialog(this,"No es posible realizar la operacion, primero genera una matriz");
-     }
+     }else  showMessageDialog(this,"No es posible realizar la operacion, primero genera una matriz");
     }//GEN-LAST:event_btnSumaRenActionPerformed
 
     private void btnSumaColActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumaColActionPerformed
        if(realizarOperaciones){
          int col;
          try {
-             col=Integer.parseInt(txtCol.getText());
-              int resSumaCol=MatrizCua.sumarValoresColumna(col-1);
-              showMessageDialog(this,"La suma de los valores de la columna "+col+" es : "+resSumaCol);
+                col=Integer.parseInt(txtCol.getText());
+                int resSumaCol=MatrizCua.sumarValoresColumna(col-1);
+                showMessageDialog(this,"La suma de los valores de la columna "+col+" es : "+resSumaCol);
           }catch (NumberFormatException e){
               showMessageDialog(this, "Ingresa el numero de la columna que deseas sumar");
           }
-     }else{
-         showMessageDialog(this,"No es posible realizar la operacion, primero genera una matriz");
-     }
+     }else   showMessageDialog(this,"No es posible realizar la operacion, primero genera una matriz");
     }//GEN-LAST:event_btnSumaColActionPerformed
 
     private void btnInvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvertirActionPerformed
         if(realizarOperaciones){
-            int [][] InterCol;
-               InterCol=MatrizCua.inversa();
-           
-             NuevaM.setColumnCount(InterCol.length);
-             NuevaM.setRowCount(InterCol.length);
-
-             for (int i = 0; i < InterCol.length; i++) {
-                 for (int j = 0; j < InterCol.length; j++) {
-                     NuevaM.setValueAt(InterCol[i][j], i, j);
-                 }
-              }
+                 int [][] InterCol;
+                 InterCol=MatrizCua.inversa();
+                MostrarMatriz(NuevaM,InterCol);
         }else{
             showMessageDialog(this,"No es posible invertir una matriz inexistente");
         }
@@ -323,17 +350,10 @@ public boolean realizarOperaciones;
               ren2=Integer.parseInt(txtRen2.getText())-1;
               InterRen=MatrizCua.intercambioRenglones(ren1,ren2);
           }catch (NumberFormatException e){
-              showMessageDialog(this, "Ingresa el numero del renglon que deseas sumar");
+              showMessageDialog(this, "Ingresa el numero de los renglones que deseas intercambiar");
                return;
           }
-            NuevaM.setColumnCount(InterRen.length);
-            NuevaM.setRowCount(InterRen.length);
-            
-            for (int i = 0; i < InterRen.length; i++) {
-                for (int j = 0; j < InterRen.length; j++) {
-                    NuevaM.setValueAt(InterRen[i][j], i, j);
-                }
-             }
+           MostrarMatriz(NuevaM,InterRen);
         }else{
             showMessageDialog(this,"No es posible intercambiar renglones\n de una matriz inexistente");
         }
@@ -349,16 +369,9 @@ public boolean realizarOperaciones;
               col2=Integer.parseInt(txtCol2.getText())-1;
               InterCol=MatrizCua.intercambioColumnas(col1,col2);
           }catch (NumberFormatException e){
-              showMessageDialog(this, "Ingresa el numero del renglon que deseas sumar");
+              showMessageDialog(this, "Ingresa el numero de las columnas que deseas intercambiar");
           }
-            NuevaM.setColumnCount(InterCol.length);
-            NuevaM.setRowCount(InterCol.length);
-            
-            for (int i = 0; i < InterCol.length; i++) {
-                for (int j = 0; j < InterCol.length; j++) {
-                    NuevaM.setValueAt(InterCol[i][j], i, j);
-                }
-             }
+           MostrarMatriz(NuevaM,InterCol);
         }else{
             showMessageDialog(this,"No es posible intercambiar columnas\n de una matriz inexistente");
         }
@@ -374,17 +387,10 @@ public boolean realizarOperaciones;
               dren2=Integer.parseInt(txtRen2.getText())-1;
               dupRen=MatrizCua.copiarRenglon(dren1,dren2);
           }catch (NumberFormatException e){
-              showMessageDialog(this, "Ingresa el numero del renglon que deseas sumar");
+              showMessageDialog(this, "Ingresa el numero del renglon que copiar");
                return;
           }
-            NuevaM.setColumnCount(dupRen.length);
-            NuevaM.setRowCount(dupRen.length);
-            
-            for (int i = 0; i < dupRen.length; i++) {
-                for (int j = 0; j < dupRen.length; j++) {
-                    NuevaM.setValueAt(dupRen[i][j], i, j);
-                }
-             }
+           MostrarMatriz(NuevaM,dupRen);
         }else{
             showMessageDialog(this,"No es posible copiar renglones\n de una matriz inexistente");
         }
@@ -400,28 +406,52 @@ public boolean realizarOperaciones;
               dcol2=Integer.parseInt(txtCol2.getText())-1;
               dupCol=MatrizCua.copiarColumna(dcol1,dcol2);
           }catch (NumberFormatException e){
-              showMessageDialog(this, "Ingresa el numero del renglon que deseas sumar");
+              showMessageDialog(this, "Ingresa el numero de la columna que deseas copiar");
                return;
           }
-            NuevaM.setColumnCount(dupCol.length);
-            NuevaM.setRowCount(dupCol.length);
-            
-            for (int i = 0; i < dupCol.length; i++) {
-                for (int j = 0; j < dupCol.length; j++) {
-                    NuevaM.setValueAt(dupCol[i][j], i, j);
-                }
-             }
+            MostrarMatriz(NuevaM,dupCol);
         }else{
             showMessageDialog(this,"No es posible copiar una columna\n de una matriz inexistente");
         }
     }//GEN-LAST:event_btnDupColActionPerformed
-    public void MostrarMatriz(DefaultTableModel tabla){
-        for (int i = 0; i < MatrizCua.getTam(); i++) {
-            for (int j = 0; j < MatrizCua.getTam(); j++) {
-                tabla.setValueAt(MatrizCua.getMatriz()[i][j], i, j);
-            }
+
+    private void btnSumarMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumarMatrizActionPerformed
+       if(realizarOperaciones){
+            int sumaM=MatrizCua.sumarValores();
+            showMessageDialog(this,"El resultado de la suma de los elementos de la matriz es: "+sumaM);
+        }else{
+            showMessageDialog(this,"No es posible realizar la suma de los elemtos de una matriz inexistente");
         }
+    }//GEN-LAST:event_btnSumarMatrizActionPerformed
+
+    private void txtRenFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRenFocusGained
+        txtRen.setText("");
+    }//GEN-LAST:event_txtRenFocusGained
+
+    private void txtRen2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRen2FocusGained
+        txtRen2.setText("");
+    }//GEN-LAST:event_txtRen2FocusGained
+
+    private void txtColFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtColFocusGained
+       txtCol.setText("");
+    }//GEN-LAST:event_txtColFocusGained
+
+    private void txtCol2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCol2FocusGained
+         txtCol2.setText("");
+    }//GEN-LAST:event_txtCol2FocusGained
+   
+    //Metodo para llenar las tablas con los valores de las matrices
+    public void MostrarMatriz(DefaultTableModel tabla, int[][] matriz){
+             tabla.setColumnCount(matriz.length);
+             tabla.setRowCount(matriz.length);
+            
+            for (int i = 0; i < matriz.length; i++) {
+                for (int j = 0; j < matriz.length; j++) {
+                    tabla.setValueAt(matriz[i][j], i, j);
+                }
+             }
     }
+    
     /**
      * @param args the command line arguments
      */
@@ -466,6 +496,7 @@ public boolean realizarOperaciones;
     private javax.swing.JButton btnInvertir;
     private javax.swing.JButton btnSumaCol;
     private javax.swing.JButton btnSumaRen;
+    private javax.swing.JButton btnSumarMatriz;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

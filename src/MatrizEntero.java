@@ -9,7 +9,7 @@ L- intercambioRenglones(int reng1, int ren2): Realiza un intercambio de datos en
 L- intercambioColumnas(int col1, int col2): Realiza un intercambio de valores entre las columnas 1 y 2.
 L- copiarRenglon(int origen, int destino): Realiza un copiado de valores desde renglon origen hacia renglón destino.
 L- copiarColumna(int colOrigen, int ColDestino): Copia los datos de la columna origen sobre la destino.
-- inversa: no lleva parámetro, retorna la matriz inversa, es decirlo los renglones los vuelve columnas y viceversa.
+L- inversa: no lleva parámetro, retorna la matriz inversa, es decirlo los renglones los vuelve columnas y viceversa.
  */
 /**
  * @author IsidroAntonio
