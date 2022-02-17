@@ -297,8 +297,17 @@ public boolean realizarOperaciones;
 
     private void btnInvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvertirActionPerformed
         if(realizarOperaciones){
-            MatrizCua.inversa();
-            MostrarMatriz(NuevaM);
+            int [][] InterCol;
+               InterCol=MatrizCua.inversa();
+           
+             NuevaM.setColumnCount(InterCol.length);
+             NuevaM.setRowCount(InterCol.length);
+
+             for (int i = 0; i < InterCol.length; i++) {
+                 for (int j = 0; j < InterCol.length; j++) {
+                     NuevaM.setValueAt(InterCol[i][j], i, j);
+                 }
+              }
         }else{
             showMessageDialog(this,"No es posible invertir una matriz inexistente");
         }
