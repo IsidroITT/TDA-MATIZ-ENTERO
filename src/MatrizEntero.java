@@ -98,7 +98,7 @@ public class MatrizEntero {
 //: Realiza un copiado de valores desde renglon origen hacia renglón destino.
  public int[][] copiarColumna(int colOrigen, int colDestino){
      for (int i = 0; i < Tam; i++) {
-        Matriz[i][colOrigen] = Matriz[i][colDestino];
+        Matriz[i][colDestino]=Matriz[i][colOrigen];
     } 
      return Matriz;
  }
